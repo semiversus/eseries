@@ -1,6 +1,7 @@
 Sandbox branch to test class based implementation of ESeries.
 
 .. code:: python
+
         >>> from eseries import *
         
         >>> len(E12)  # returning number of values in one decade
