@@ -1,6 +1,6 @@
 from math import floor, log10
 
-from eseries.eseries import _round_sig
+from eseries.compatability import _round_sig
 
 PREFIXES = 'yzafpnum kMGTPEZY'
 

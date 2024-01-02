@@ -3,14 +3,14 @@ from hypothesis import given, assume
 from hypothesis.strategies import sampled_from, floats, data, integers
 from pytest import raises
 
-from eseries import (ESeries, series, erange, find_less_than_or_equal, find_greater_than_or_equal, find_nearest,
+from eseries import (ESeries, E12, series, erange, find_less_than_or_equal, find_greater_than_or_equal, find_nearest,
                      find_less_than, find_greater_than, find_nearest_few, open_erange)
-from eseries.eseries import lower_tolerance_limit, upper_tolerance_limit, tolerance_limits, E12, tolerance
+from eseries.compatability import lower_tolerance_limit, upper_tolerance_limit, tolerance_limits, tolerance
 
 
 @given(series_key=sampled_from(ESeries))
 def test_series_cardinality(series_key):
-    assert len(series(series_key)) == series_key
+    assert len(series(series_key)) == len(series_key)
 
 
 @given(series_key=sampled_from(ESeries),
@@ -20,7 +20,7 @@ def test_erange_cardinality_over_one_order_of_magnitude(series_key, low):
     assume(not math.isinf(high))
     values = list(erange(series_key, low, high))
     include_end = bool(high in values)
-    cardinality = series_key + include_end
+    cardinality = len(series_key) + include_end
     assert len(values) == cardinality
 
 
@@ -30,7 +30,7 @@ def test_open_erange_cardinality_over_one_order_of_magnitude(series_key, low):
     high = low * 10.0
     assume(not math.isinf(high))
     values = list(open_erange(series_key, low, high))
-    cardinality = series_key
+    cardinality = len(series_key)
     assert len(values) == cardinality
 
 

@@ -7,7 +7,7 @@ import docopt_subcommands as dsc
 
 from eseries.eng import eng_string
 from eseries.version import __version__
-from eseries.eseries import series_key_from_name, find_nearest, find_nearest_few, find_greater_than_or_equal, \
+from eseries.compatability import series_key_from_name, find_nearest, find_nearest_few, find_greater_than_or_equal, \
     find_greater_than, find_less_than, find_less_than_or_equal, tolerance, series, erange, lower_tolerance_limit, \
     tolerance_limits, upper_tolerance_limit
 
